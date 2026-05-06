@@ -43,6 +43,9 @@
       return inventors.filter(inventor => inventor.year >= 1500 && inventor.year <=1600);
     }
 
+    const old = inventors.filter(inventor => inventor.year >= 1500 && inventor.year <= 1600)
+
+    console.table(old);
     console.table(filterOld(inventors));
 
     // Array.prototype.map()
@@ -52,6 +55,9 @@
       return name.map(user => `${user.first} ${user.last}`);
     }
 
+    const fName = inventors.map((user => `${user.first} ${user.last}`));
+
+    console.log(fName);
     console.table(fullName(inventors));
 
     // Array.prototype.sort()
@@ -61,7 +67,10 @@
       return age.sort((a, b) => a.year - b.year);
     }
 
+    const oldOld = inventors.sort((a, b) => a.year - b.year);
+
     console.table(oldest(inventors));
+    console.table(oldOld);
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
@@ -71,9 +80,15 @@
         const age = person.passed - person.year;
         return acc + age;
       }, 0);
-    }    
+    } 
+    
+    const totalYears = inventors.reduce((acc, cv) => {
+      const age = cv.passed - cv.year;
+      return acc + age;
+    }, 0);
 
     console.log(total(inventors));
+    console.log(totalYears);
 
     // 5. Sort the inventors by years lived
 
@@ -81,7 +96,10 @@
       return years.sort((a, b) =>  (b.passed - b.year) - (a.passed - a.year));
     }
 
+    const lived = inventors.sort((a, b) => (b.passed - b.year) - (a.passed - a.year));
+
     console.table(yearsLived(inventors));
+    console.log(lived);
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
